@@ -17,6 +17,16 @@ def load_data():
     return df
 
 # Get access token from Streamlit secrets
+
+client_id = st.secrets["STRAVA_CLIENT_ID"]
+client_secret = st.secrets["STRAVA_CLIENT_SECRET"]
+refresh_token = st.secrets["STRAVA_REFRESH_TOKEN"]
+
+# Debug: display secret values (lengths only)
+st.write("🔐 Client ID:", client_id)
+st.write("🔐 Secret length:", len(client_secret))
+st.write("🔐 Refresh token length:", len(refresh_token))
+
 try:
     client_id = st.secrets["client_id"]
     client_secret = st.secrets["client_secret"]
