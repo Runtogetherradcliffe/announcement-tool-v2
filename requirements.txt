@@ -1,0 +1,8 @@
+streamlit
+pandas
+requests
+openpyxl
+gpxpy
+
+
+http://localhost/exchange_token?state=&code=87158f8e031c9bec73ca909a90a5247b9995f6a9&scope=read,activity:read_all
