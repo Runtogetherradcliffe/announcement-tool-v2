@@ -3,6 +3,12 @@ import streamlit as st
 import pandas as pd
 from datetime import date
 from strava_utils import (
+
+try:
+    st.write("🔐 Client ID (test access):", st.secrets["STRAVA_CLIENT_ID"])
+except Exception as e:
+    st.error(f"❌ Could not read STRAVA_CLIENT_ID: {e}")
+
     refresh_strava_token,
     download_gpx_from_strava_route,
     extract_landmarks_from_gpx,
