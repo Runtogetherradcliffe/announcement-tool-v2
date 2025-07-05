@@ -28,9 +28,9 @@ st.write("🔐 Secret length:", len(client_secret))
 st.write("🔐 Refresh token length:", len(refresh_token))
 
 try:
-    client_id = st.secrets["client_id"]
-    client_secret = st.secrets["client_secret"]
-    refresh_token = st.secrets["refresh_token"]
+    # removed lowercase client_id
+    # removed lowercase client_secret
+    # removed lowercase refresh_token
     token_data = refresh_strava_token(client_id, client_secret, refresh_token)
     access_token = token_data.get("access_token")
     st.success("✅ Strava token acquired.")
