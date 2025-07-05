@@ -18,6 +18,15 @@ except Exception as e:
     describe_gpx_route
 )
 
+try:
+    client_id = st.secrets["STRAVA_CLIENT_ID"]
+    st.write("✅ Found STRAVA_CLIENT_ID:", client_id)
+except KeyError:
+    st.error("❌ STRAVA_CLIENT_ID not found in secrets.")
+except Exception as e:
+    st.error(f"Unexpected error accessing secrets: {e}")
+
+
 @st.cache_data
 def load_data():
     df = pd.read_excel("RTR route schedule.xlsx")
@@ -27,23 +36,17 @@ def load_data():
 
 # Get access token from Streamlit secrets
 
-client_id = st.secrets["STRAVA_CLIENT_ID"]
 client_secret = st.secrets["STRAVA_CLIENT_SECRET"]
 refresh_token = st.secrets["STRAVA_REFRESH_TOKEN"]
 
 # Debug: display secret values (lengths only)
-st.write("🔐 Client ID:", client_id)
-st.write("🔐 Secret length:", len(client_secret))
-st.write("🔐 Refresh token length:", len(refresh_token))
 
-try:
     # removed lowercase client_id
     # removed lowercase client_secret
     # removed lowercase refresh_token
     token_data = refresh_strava_token(client_id, client_secret, refresh_token)
     access_token = token_data.get("access_token")
     st.success("✅ Strava token acquired.")
-except Exception as e:
     access_token = None
     st.warning("⚠️ Could not acquire Strava token. GPX functionality will be skipped.")
 
