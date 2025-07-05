@@ -5,9 +5,12 @@ from datetime import date
 from strava_utils import (
 
 try:
-    st.write("🔐 Client ID (test access):", st.secrets["STRAVA_CLIENT_ID"])
+    client_id = st.secrets["STRAVA_CLIENT_ID"]
+    st.write("✅ Found STRAVA_CLIENT_ID:", client_id)
+except KeyError:
+    st.error("❌ STRAVA_CLIENT_ID not found in secrets.")
 except Exception as e:
-    st.error(f"❌ Could not read STRAVA_CLIENT_ID: {e}")
+    st.error(f"Unexpected error accessing secrets: {e}")
 
     refresh_strava_token,
     download_gpx_from_strava_route,
